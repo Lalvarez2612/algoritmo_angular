@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
   }
   login() {
   /// Verificar si la cedula existe
-///  localStorage.setItem("28434540", JSON.stringify(this.formulario.value))
-
     console.log("Este es mi cedula",this.formulario.get('cedula')?.value)
     let isAccount = localStorage.getItem(this.formulario.get('cedula')?.value)
     console.log("tienes cuenta",isAccount)
@@ -41,8 +39,6 @@ export class LoginComponent implements OnInit {
           alert("Contraseña invalida")
         }
       }
-
-
   /// Ir hacia otra pagina
   }
   restablecer() {

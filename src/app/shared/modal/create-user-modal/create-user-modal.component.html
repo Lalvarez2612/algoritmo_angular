@@ -1,0 +1,36 @@
+<div class="modal-header">
+	<h4 class="modal-title">Creación de </h4>
+</div>
+<div class="modal-body">
+	<div class="card lesson-border">
+    <form [formGroup]="formulario">
+		<div class="container">
+      <label for="inputPassword5" class="form-label">Nombre y apellido</label>
+      <input
+      formControlName="nombreYapellido"
+        id="curso"
+        class="form-control"
+        aria-describedby="passwordHelpBlock"
+      />
+      <label for="inputPassword5" class="form-label">Cedula</label>
+      <input
+      formControlName="cedula"
+        id="curso"
+        class="form-control"
+        aria-describedby="passwordHelpBlock"
+      />
+      <label for="inputPassword5" class="form-label">Contraseña</label>
+      <input
+      formControlName="contrasena"
+        id="curso"
+        class="form-control"
+        aria-describedby="passwordHelpBlock"
+      />
+    </div>
+	</form>
+</div>
+	</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(formulario.value)" [disabled]="formulario.invalid">Agregar</button>
+	<button type="button" class="btn btn-outline-dark" (click)="activeModal.close(null)">Cerrar</button>
+</div>

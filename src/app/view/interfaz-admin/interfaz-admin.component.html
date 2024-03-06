@@ -1,37 +1,185 @@
 <div class="container-fluid">
   <div class="row flex-nowrap">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-              <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                  <span class="fs-6 d-none d-sm-inline">Sistema de gestion</span>
-              </a>
-              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                  <li class="nav-item">
-                      <a href="#" class="nav-link align-middle px-0">
-                          <i class="fs-4 bi-house"></i>   <button class="btn btn-primary" type="button">Agregar curso</button>
-                      </a>
-                  </li>
-              </ul>
-              <hr>
-              <div class="dropdown pb-4">
-                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                      <span class="d-none d-sm-inline mx-1">loser</span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                      <li><a class="dropdown-item" href="#">New project...</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
-                      <li><a class="dropdown-item" href="#">Profile</a></li>
-                      <li>
-                          <hr class="dropdown-divider">
-                      </li>
-                      <li><a class="dropdown-item" href="#">Sign out</a></li>
-                  </ul>
-              </div>
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+      <app-menu-vertical></app-menu-vertical>
+    </div>
+
+    <div class="col py-3">
+      <form [formGroup]="formulario">
+        <br />
+        <div class="container">
+          <label for="inputPassword5" class="form-label"
+            >Nombre del curso</label
+          >
+          <input
+            formControlName="nombreCurso"
+            id="curso"
+            class="form-control"
+            aria-describedby="passwordHelpBlock"
+          />
+
+          <br />
+          <div class="row">
+            <div class="col">
+              <label for="inputPassword5" class="form-label"
+                >Unidades de crédito</label
+              >
+              <input
+                formControlName="unidadesCredito"
+                type="number"
+                id="credito"
+                class="form-control"
+                aria-describedby="passwordHelpBlock"
+              />
+            </div>
+            <div class="col">
+              <label for="inputPassword5" class="form-label"
+                >Cantidad de horas</label
+              >
+              <input
+                formControlName="cantidadHoras"
+                type="number"
+                id="inputPassword5"
+                class="form-control"
+                aria-describedby="passwordHelpBlock"
+              />
+            </div>
           </div>
+          <br />
+          <div class="row">
+            <div class="col">
+              <label for="inputPassword5" class="form-label">Fecha fin</label>
+              <div class="input-group">
+                <input
+                  formControlName="fechaInicio"
+                  (click)="d.toggle()"
+                  class="form-control"
+                  placeholder="yyyy-mm-dd"
+                  name="dp"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                />
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="inputPassword5" class="form-label">Fecha fin</label>
+              <div class="input-group">
+                <input
+                  formControlName="fechaFin"
+                  (click)="d.toggle()"
+                  class="form-control"
+                  placeholder="yyyy-mm-dd"
+                  name="dp"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div class="container">
+          <h2>Estudiantes asignados</h2>
+          <div class="align-items-end">
+            <button type="button" class="btn btn-primary" (click)="open()">
+              Agregar estudiantes
+            </button>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nombre y Apellido</th>
+                <th>Numero de cédula</th>
+                <th>Contraseña</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of estudianteList">
+                <td>{{ item.nombreYapellido }}</td>
+                <td>{{ item.cedula }}</td>
+                <td>{{ item.contrasena }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br />
+
+        <div class="container">
+          <h2>Profesores asignados</h2>
+          <div class="align-items-end">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="openProfesores()"
+            >
+              Agregar Profesores
+            </button>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nombre y Apellido</th>
+                <th>Numero de cédula</th>
+                <th>Contraseña</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of profesorList">
+                <td>{{ item.nombreYapellido }}</td>
+                <td>{{ item.cedula }}</td>
+                <td>{{ item.contrasena }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for </button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for </button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for </button> -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="col py-3">
-          Content area...
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >Recipient:</label
+            >
+            <input type="text" class="form-control" id="recipient-name" />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
   </div>
 </div>

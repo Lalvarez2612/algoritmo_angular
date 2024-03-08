@@ -27,8 +27,14 @@ export class LoginComponent implements OnInit {
       cedula: new FormControl('', [Validators.required]),
       contrasena: new FormControl('', [Validators.required]),
     });
+
   }
   login() {
+    localStorage.setItem("admin",JSON.stringify({
+      cedula: 'admin',
+      contrasena: 'admin',
+      rol: 'admin'
+    }));
     /// Verificar si la cedula existe
     console.log('Este es mi cedula', this.formulario.get('cedula')?.value);
     let isAccount = localStorage.getItem(this.formulario.get('cedula')?.value);
@@ -42,7 +48,7 @@ export class LoginComponent implements OnInit {
       if (
         formularioCedula.contrasena == this.formulario.get('contrasena')?.value
       ) {
-        //this.router.navigate(['admin'])
+        localStorage.setItem("logeado",data!);
         switch (formularioCedula.rol) {
           case 'admin':
             this.router.navigate(['admin']);

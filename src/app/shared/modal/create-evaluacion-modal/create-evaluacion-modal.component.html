@@ -1,31 +1,34 @@
 <div class="modal-header">
-	<h4 class="modal-title">Creación de Usuarios</h4>
+	<h4 class="modal-title">Creación de usuario</h4>
 </div>
 <div class="modal-body">
 	<div class="card lesson-border">
     <form [formGroup]="formulario">
 		<div class="container">
-      <label for="inputPassword5" class="form-label">Nombre y apellido</label>
+      <label for="inputPassword5" class="form-label">Tema</label>
       <input
-      formControlName="nombreYapellido"
+      formControlName="tema"
         id="curso"
         class="form-control"
         aria-describedby="passwordHelpBlock"
       />
-      <label for="inputPassword5" class="form-label">Cedula</label>
+      <label for="inputPassword5" class="form-label">Porcentaje</label>
       <input
-      formControlName="cedula"
+      formControlName="porcentaje"
         id="curso"
         class="form-control"
         aria-describedby="passwordHelpBlock"
       />
-      <label for="inputPassword5" class="form-label">Contraseña</label>
+      <label for="inputPassword5" class="form-label">Fecha</label>
       <input
-      formControlName="contrasena"
-        id="curso"
-        class="form-control"
-        aria-describedby="passwordHelpBlock"
-      />
+      formControlName="fecha"
+      (click)="d.toggle()"
+      class="form-control"
+      placeholder="yyyy-mm-dd"
+      name="dp"
+      ngbDatepicker
+      #d="ngbDatepicker"
+    />
     </div>
 	</form>
 </div>

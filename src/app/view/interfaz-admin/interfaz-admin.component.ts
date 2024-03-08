@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CreateUserModalComponent } from '../../shared/modal/create-user-modal/create-user-modal.component';
+import { __values } from 'tslib';
 
 
 @Component({
@@ -38,7 +39,6 @@ export class InterfazAdminComponent implements OnInit{
       console.log("text", value);
       if (value !=null){
         this.estudianteList.push({...value,rol:'estudiantes'});
-        localStorage.setItem(value.cedula,JSON.stringify({...value,rol:'estudiantes'}));
       }
     })
   }
@@ -47,10 +47,28 @@ export class InterfazAdminComponent implements OnInit{
     modalRef.result.then(value=>{
       console.log("text", value);
       if (value !=null){
-        this.profesorList.push({...value,rol:'profesor'});
-        localStorage.setItem(value.cedula,JSON.stringify({...value,rol:'profesor'}));
+        let profe = localStorage.getItem(value.cedula);
+        if (this.profesorList.length > 0){
+          alert("No se puede agregar más de un profesor por curso");
+        }else if (profe != null) {
+          alert("No se puede agregar al profesor: "+value.cedula+" Ya posee un curso asignado");
+        }else {
+          this.profesorList.push({...value,rol:'profesor'});
+        }
       }
     })
   }
+  guardar(){
+    this.estudianteList.map(__values=>{
+      localStorage.setItem(__values.cedula,JSON.stringify({...__values,rol:'estudiantes','curso':JSON.stringify(this.formulario.value)}));
+    });
+    this.profesorList.map(__values=>{
+    localStorage.setItem(__values.cedula,JSON.stringify({...__values,rol:'profesor','curso':JSON.stringify(this.formulario.value),
+    'estudiantes':JSON.stringify(this.estudianteList)}));
+  });
+  alert("Sus cambios se han guardado exitosamente");
+  this.formulario.reset();
+  this.estudianteList = [];
+  this.profesorList = [];
 }
-
+}

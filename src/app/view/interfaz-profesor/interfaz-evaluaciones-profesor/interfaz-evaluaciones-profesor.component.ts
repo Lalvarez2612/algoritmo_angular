@@ -35,14 +35,26 @@ export class InterfazEvaluacionesProfesorComponent {
     const modalRef = this.modalService.open(CreateEvaluacionModalComponent);
     modalRef.result.then(value=>{
       console.log("text", value);
+      if(this.evaluacionesList.length ==5){
+        alert ("Ya creaste el 100% de las evaluaciones")
+        return;
+        
+      }
+
       if (value !=null){
-        this.evaluacionesList.push({...value});
+        this.evaluacionesList.push({
+          tema:value.tema,
+          porcentaje:value.porcentaje,
+          fecha:value.fecha.day+"/"+value.fecha.month+"/"+value.fecha.year});
       }
     })
   }
 guardar(){
   let profesor=localStorage.getItem("logeado");
-  console.log("Profesor 2,"+profesor+"");
+  let objetc:any = JSON.parse(profesor!);
+  const data = JSON.parse(localStorage.getItem('logeado')!);
+  console.log("Profesor 2,",objetc);
+
 }
-}
+} 
 

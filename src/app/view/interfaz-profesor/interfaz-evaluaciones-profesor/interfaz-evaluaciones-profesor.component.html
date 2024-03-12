@@ -9,7 +9,7 @@
       <div class="container">
         <h2>Plan evaluativo</h2>
         <div class="align-items-end">
-          <button type="button" class="btn btn-primary" (click)="open()">
+          <button [disabled]="this.evaluacionesList.length ==5" type="button" class="btn btn-primary" (click)="open()">
             Agregar evaluaciones
           </button>
         </div>
@@ -34,14 +34,14 @@
       <br>
       <br>
       <div style="text-align: center;">
-      <!-- <button
-      [disabled]="evaluacionesList.length==0"
+        <button
+      [disabled]="evaluacionesList.length<1"
       type="button"
       class="btn btn-primary"
       (click)="guardar()"
     >
       Guardar
-    </button> -->
+    </button> 
     </div>
 
   </div>

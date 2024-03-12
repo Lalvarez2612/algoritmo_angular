@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       if (
         formularioCedula.contrasena == this.formulario.get('contrasena')?.value
       ) {
-        localStorage.setItem("logeado",data!);
+        localStorage.setItem("logeado",JSON.stringify(formularioCedula));
         switch (formularioCedula.rol) {
           case 'admin':
             this.router.navigate(['admin']);

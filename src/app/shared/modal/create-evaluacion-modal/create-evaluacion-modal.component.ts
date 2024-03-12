@@ -23,7 +23,7 @@ export class CreateEvaluacionModalComponent {
   formInit() {
     this.formulario = this.fb.group({
       tema:new FormControl('',[Validators.required]),
-      porcentaje:new FormControl('',[Validators.required]),
+      porcentaje:new FormControl('20%',[Validators.required]),
       fecha:new FormControl('',[Validators.required]),
     });
   }

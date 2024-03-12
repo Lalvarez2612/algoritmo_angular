@@ -16,6 +16,7 @@
       <input
       formControlName="porcentaje"
         id="curso"
+      readonly
         class="form-control"
         aria-describedby="passwordHelpBlock"
       />
@@ -34,6 +35,6 @@
 </div>
 	</div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(formulario.value)" [disabled]="formulario.invalid">Agregar</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(formulario.getRawValue())" [disabled]="formulario.invalid">Agregar</button>
 	<button type="button" class="btn btn-outline-dark" (click)="activeModal.close(null)">Cerrar</button>
 </div>

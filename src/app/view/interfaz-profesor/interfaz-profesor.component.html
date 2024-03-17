@@ -1,49 +1,7 @@
 <div class="container-fluid">
   <div class="row flex-nowrap">
     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-
       <app-menu-vertical-profesor></app-menu-vertical-profesor>
     </div>
-    <div class="col py-3">
-      <br />
-      <div class="container">
-        <h2>Plan evaluativo</h2>
-        <div class="align-items-end">
-          <button type="button" class="btn btn-primary" (click)="open()">
-            Agregar evaluaciones
-          </button>
-        </div>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Tema</th>
-              <th>Porcentaje</th>
-              <th>Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of evaluacionesList">
-              <td>{{ item.tema }}</td>
-              <td>{{ item.porcentaje}}</td>
-              <td>{{ item.fecha }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <br/>
-      <br>
-      <br>
-      <div style="text-align: center;">
-      <!-- <button
-      [disabled]="evaluacionesList.length==0"
-      type="button"
-      class="btn btn-primary"
-      (click)="guardar()"
-    >
-      Guardar
-    </button> -->
-    </div>
-
   </div>
-</div>
 </div>

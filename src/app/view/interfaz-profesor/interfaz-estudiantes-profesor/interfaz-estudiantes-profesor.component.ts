@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuVerticalProfesorComponent } from '../../layout/menu-vertical-profesor/menu-vertical-profesor.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +20,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './interfaz-estudiantes-profesor.component.html',
   styleUrl: './interfaz-estudiantes-profesor.component.css'
 })
-export class InterfazEstudiantesProfesorComponent {
+export class InterfazEstudiantesProfesorComponent implements OnInit{
+  relleno:any[]=[];
 
-}
+  ngOnInit(): void {
+  let listaEstudiante= localStorage.getItem("logeado");
+  let segundo:any = JSON.parse(listaEstudiante!);
+  let tercero:any[] = JSON.parse(segundo.estudiantes!);
+  console.log("Estudiantes,",tercero);  
+tercero.forEach((value, index)=>{
+  this.relleno.push({
+    indice:index+1,
+    cedula:value.cedula,
+    nombreYapellido:value.nombreYapellido,
+  });
+});
+  
+}}

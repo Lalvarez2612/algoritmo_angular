@@ -28,8 +28,7 @@ export class InterfazEvaluacionesProfesorComponent {
   constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
-    let profesor=localStorage.getItem("logeado");
-    console.log("Profesor 1,"+profesor+"")
+    
   }
   open() {
     const modalRef = this.modalService.open(CreateEvaluacionModalComponent);

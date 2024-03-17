@@ -6,7 +6,29 @@
       <app-menu-vertical-profesor></app-menu-vertical-profesor>
     </div>
     <div class="col py-3">
-      <p>interfaz-profesor works!</p>
+      <h3>Estudiantes</h3>
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">N</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Estudiante</th>
+            <th scope="col">Evaluaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of relleno">
+            <th> {{item.indice}}</th>
+            <td>{{item.cedula}}</td>
+            <td>{{item.nombreYapellido}}</td>
+            <td>
+              <button class="btn btn-link btn-sm px-3" style="background-color:transparent;">
+                Editar
+             </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>  
     </div>
   </div>
 </div>

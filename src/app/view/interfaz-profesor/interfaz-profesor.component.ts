@@ -23,26 +23,4 @@ import { CreateEvaluacionModalComponent } from '../../shared/modal/create-evalua
   templateUrl: './interfaz-profesor.component.html',
   styleUrl: './interfaz-profesor.component.css'
 })
-export class InterfazProfesorComponent {
-  evaluacionesList:any[]=[];
-
-  constructor(private modalService: NgbModal) {}
-
-  ngOnInit() {
-    let profesor=localStorage.getItem("logeado");
-    console.log("Profesor 1,"+profesor+"")
-  }
-  open() {
-    const modalRef = this.modalService.open(CreateEvaluacionModalComponent);
-    modalRef.result.then(value=>{
-      console.log("text", value);
-      if (value !=null){
-        this.evaluacionesList.push({...value});
-      }
-    })
-  }
-guardar(){
-  let profesor=localStorage.getItem("logeado");
-  console.log("Profesor 2,"+profesor+"");
-}
-}
+export class InterfazProfesorComponent {}

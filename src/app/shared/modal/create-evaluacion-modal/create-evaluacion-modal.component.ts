@@ -25,6 +25,7 @@ export class CreateEvaluacionModalComponent {
       tema:new FormControl('',[Validators.required]),
       porcentaje:new FormControl('20%',[Validators.required]),
       fecha:new FormControl('',[Validators.required]),
+      calificacion:new FormControl(0),
     });
   }
 

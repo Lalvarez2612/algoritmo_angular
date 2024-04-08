@@ -2,11 +2,36 @@
 <div class="container-fluid">
   <div class="row flex-nowrap">
     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-      <app-menu-vertical></app-menu-vertical>
+
+      <app-menu-vertical-estudiante></app-menu-vertical-estudiante>
     </div>
     <div class="col py-3">
-      <p>interfaz-estudiantes works!</p>
+      <br />
+      <div class="container">
+        <h2> Hola {{this.estudiante.nombreYapellido}}</h2>
+        <br>
+        <div class="align-items-end">
+        </div>
+        <h2> materia: {{this.curso.nombreCurso}}</h2>
+      <table class="table align-middle">
+        <thead>
+        <tr> 
+            <th scope="col">Objetivo</th>
+            <th scope="col">Porcentaje</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Nota</th> 
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of relleno; let i=index">
+            <th> {{item.tema}}</th>
+            <td>{{item.porcentaje}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.calificaciones}}</td>
+          </tr>
+        </tbody>
+      </table>  
     </div>
   </div>
+  </div>
 </div>
-

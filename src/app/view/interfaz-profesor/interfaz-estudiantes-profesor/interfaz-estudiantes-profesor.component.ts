@@ -6,6 +6,8 @@ import { CreateUserModalComponent } from '../../../shared/modal/create-user-moda
 import { InterfazEvaluacionesProfesorComponent } from '../interfaz-evaluaciones-profesor/interfaz-evaluaciones-profesor.component';
 import { CommonModule } from '@angular/common';
 import { ModalEstudiantesComponent } from '../../../shared/modal/modal-estudiantes/modal-estudiantes.component';
+import { ModalNotasComponent } from '../../../shared/modal/modal-notas/modal-notas.component';
+import { json } from 'stream/consumers';
 
 @Component({
   selector: 'app-interfaz-estudiantes-profesor',
@@ -28,22 +30,37 @@ export class InterfazEstudiantesProfesorComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
-    let listaEstudiante = localStorage.getItem('logeado');
-    let segundo: any = JSON.parse(listaEstudiante!);
-    let tercero: any[] = JSON.parse(segundo.estudiantes!);
-    console.log('Estudiantes,', tercero);
-    tercero.forEach((value, index) => {
-      this.relleno.push({
-        indice: index + 1,
-        cedula: value.cedula,
-        nombreYapellido: value.nombreYapellido,
-      });
-    });
+
   }
+  estudiante:any; 
   open() {
     const modalRef = this.modalService.open(ModalEstudiantesComponent);
     modalRef.result.then((value) => {
-      console.log('text', value);
+      this.relleno = [];
+      this.estudiante = JSON.parse(localStorage.getItem(value.cedula)!);
+      let curso = JSON.parse(this.estudiante.curso);
+      let materias = curso.evaluaciones;
+      this.relleno = materias;
     });
+  }
+  openNotas(fila: any, indice: any) {
+    const modalRef = this.modalService.open(ModalNotasComponent);
+    modalRef.result.then((value) => {
+      let nota = {
+        calificaciones: value.nota,
+        fecha: fila.fecha,
+        porcentaje: fila.porcentaje,
+        tema: fila.tema,
+      };
+      this.relleno[indice] = nota;
+      console.log('verifico',this.estudiante)
+      let curso = JSON.parse(this.estudiante.curso);
+      curso.evaluaciones= this.relleno;
+      let guardarNotas = JSON.stringify(curso);
+      this.estudiante.curso = guardarNotas; 
+      localStorage.setItem(this.estudiante.cedula,JSON.stringify(this.estudiante))
+
+    });
+
   }
 }

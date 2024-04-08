@@ -12,4 +12,21 @@
         id="curso"
         class="form-control"
       />
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.close(formulario.value)"
+          [disabled]="formulario.invalid"
+        >
+          Guardar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.close(null)"
+        >
+          Cerrar
+        </button>
+      </div>
     </div>
